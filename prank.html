@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JANGAN KEPO</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Comic Sans MS, cursive;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 600% 600%;
+      animation: bgRainbow 10s linear infinite;
+      text-align: center;
+    }
+
+    @keyframes bgRainbow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-top: 30px;
+      animation: wiggle 1s infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .monyet {
+      width: 200px;
+      margin-top: 20px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff4081;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px #c2185b;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #f50057;
+      transform: scale(1.1);
+    }
+
+    .popup {
+      position: absolute;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      border: 3px dashed #ff4081;
+      font-weight: bold;
+      z-index: 999;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: floatUp 3s linear forwards;
+    }
+
+    @keyframes floatUp {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-200px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>DIBILANGIN JANGAN KEPO KOK MASIH NGEYEL 🐵💥</h1>
+  <img src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" class="monyet" alt="monyet joget" />
+  <br>
+  <button onclick="prank()" id="btn">Jangan Klik Aku 😬</button>
+
+  <audio id="laugh" src="https://www.soundjay.com/human/sounds/laugh-8.mp3" preload="auto"></audio>
+
+  <script>
+    const texts = [
+      "Aku bilang jangan klik! 😂",
+      "Loh masih kepo",
+      "Udah dibilangin yaa",
+      "Kok ngeyel sih! 😜",
+      "DOSA LHO! 🤪",
+      "HAHA MONYET NGAKAK!"
+    ];
+
+    function prank() {
+      const laugh = document.getElementById('laugh');
+      laugh.currentTime = 0;
+      laugh.play();
+
+      // Ganti tulisan tombol
+      const btn = document.getElementById("btn");
+      const newText = texts[Math.floor(Math.random() * texts.length)];
+      btn.innerText = newText;
+
+      // Tampilkan popup acak
+      const popup = document.createElement("div");
+      popup.className = "popup";
+      popup.innerText = "HAHA NGAKAKK 😆";
+
+      popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+      popup.style.left = Math.random() * (window.innerWidth - 150) + "px";
+      document.body.appendChild(popup);
+
+      setTimeout(() => popup.remove(), 2500);
+
+      // Emoji terbang
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.innerText = ["😂", "🤣", "🙈", "🐒", "😆", "💥"][Math.floor(Math.random() * 6)];
+      emoji.style.left = Math.random() * window.innerWidth + "px";
+      emoji.style.top = window.innerHeight + "px";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
